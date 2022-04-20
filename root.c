@@ -1,6 +1,5 @@
 #include "project.h"
 int iter_root;
-int max_iter_cnt = (int) (1e5);
 
 double root(double (*f)(double), double (*g)(double), double a, double b, double eps) {
     double Fc, F;
@@ -13,13 +12,71 @@ double root(double (*f)(double), double (*g)(double), double a, double b, double
         double F1 = (f(s) - g(s));
         double c = (a * Fb - b * Fa) / (Fb - Fa);
         Fc = f(c) - g(c);
-        if (Fa * (F1 - F2 ) > 0) {
+        if (Fa * (F1 - F2) > 0) {
             a = c;
             F = f(c + eps) - g(c + eps);
         } else {
             b = c;
             F = f(c - eps) - g(c - eps);
         }
-    } while  ((iter_root++ < max_iter_cnt) && (F * Fc >= 0));
+        iter_root++;
+    } while  (F * Fc >= 0);
     return a;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

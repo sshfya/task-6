@@ -1,7 +1,7 @@
 #include "project.h"
 int iter_int;
 
-double integral(double (*f)(double), double a, double b, double eps) {
+double integral(double (*f)(double), double a, double b, double eps2) {
     int n = 10;
     double h = (b - a) / n;
     double sum_n = (f(a) + f(b)) / 2;
@@ -20,9 +20,9 @@ double integral(double (*f)(double), double a, double b, double eps) {
         F_n = F_2n;
         n *= 2;
         h /= 2;
-        sum_2n = (f(a) + f(b)) / 2;
+        sum_2n =  sum_n;
 
-        for (int i = 1; i < n; i+=2) {
+        for (int i = 1; i < n; i += 2) {
             sum_2n += f(a + i * h);
         }
 
@@ -30,7 +30,63 @@ double integral(double (*f)(double), double a, double b, double eps) {
 
         iter_int++;
         sum_n = sum_2n;
-    } while (fabs(F_n - F_2n) > eps);
+    } while (fabs(F_n - F_2n) > eps2);
 
     return F_2n;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
