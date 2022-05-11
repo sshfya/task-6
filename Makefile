@@ -9,7 +9,7 @@ C_FLAGS   = -Wall -Wextra -Werror -g -m32
 
 # source C files
 
-C_SOURCES   = integral.c root.c test.c 
+C_SOURCES   = integral.c root.c main.c test.c 
 
 # assembly compiler
 
@@ -35,10 +35,10 @@ ASM_OBJECTS  = $(ASM_SOURCES:.asm=.o)
 all: $(EXECUTABLE)
 $(EXECUTABLE): $(ASM_OBJECTS) $(C_OBJECTS)
 	@$(C_C) $(C_FLAGS)  -o $@  $(ASM_OBJECTS) $(C_OBJECTS) -lm
-	@echo "\n\nThe program is compiled and ready to install using the command \"sudo make install\" or run with the command ./$(EXECUTABLE) [options].\n"
+	@echo "\n\nThe program is compiled and ready to install, run with the command ./$(EXECUTABLE) [options].\n"
 %.o: %.c
 	@$(C_C) $(C_FLAGS) -c $< -o $@
 %.o: %.asm
 	@$(ASM_C) $(ASM_FLAGS)  $< -o $@
 clean:
-	@rm -rf *.o
+	@rm -rf $(ASM_SRC_PATH)/*.o *.o

@@ -2,8 +2,11 @@ global function1
 
 section .text
 function1:
-  finit
-    fld qword[esp + 8]
+    push ebp
+    mov ebp,esp
+    
+    finit
+    fld qword[ebp + 8]
     fld st0
     frndint
     fsub st1, st0
@@ -16,5 +19,7 @@ function1:
     fmulp
     fld1
     faddp
+    
+    mov esp,ebp
+    pop ebp
     ret
- 
